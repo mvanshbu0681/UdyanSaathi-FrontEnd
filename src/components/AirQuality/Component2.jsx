@@ -1,6 +1,4 @@
-// eslint-disable-next-line no-unused-vars
 import React, { useState, useEffect } from "react";
-// import AnimatedBackground from "../animations/AnimatedBackground";
 import { getUrl } from "../Connectivity/storageHelper";
 
 const Component2 = ({ selectedSearch, onData }) => {
@@ -24,15 +22,6 @@ const Component2 = ({ selectedSearch, onData }) => {
       console.log("DATA:", data);
       setPollution(data);
 
-      // useEffect(() => {
-      //   // Simulate data fetching or any other asynchronous operation
-      //   const fetchData = async () => {
-      //     const data = pollution;
-      //     onData(data);
-      //   };
-
-      //   fetchData();
-      // }, [onData]);
       onData(data);
 
       if (data.length > 0) {
@@ -75,20 +64,18 @@ const Component2 = ({ selectedSearch, onData }) => {
 
   return (
     <>
-      <div className="C2-container relative rounded-2xl p-9 flex flex-col justify-around h-full">
-        <div className="absolute inset-0 rounded-2xl">
-          {/* <AnimatedBackground /> */}
-        </div>
-        <div className="C2-txt-1 mb-7 flex justify-center ">
+      <div className="C2-container relative rounded-2xl p-6 sm:p-9 flex flex-col justify-around h-full">
+        <div className="absolute inset-0 rounded-2xl"></div>
+        <div className="C2-txt-1 mb-4 sm:mb-7 flex justify-center">
           {pollution.map((pol) => (
-            <p key={pol.id} className="text-xl text-[#33a0d3]">
+            <p key={pol.id} className="text-base sm:text-xl text-[#33a0d3]">
               Major Air pollutants in {pol.City}
             </p>
           ))}
         </div>
-        <div className="poll-container flex flex-col gap-5">
-          <div className="poll-row-1 flex flex-row justify-evenly">
-            <div className="ic-1">
+        <div className="poll-container flex flex-col gap-4 sm:gap-5">
+          <div className="poll-row-1 flex flex-col sm:flex-row justify-evenly">
+            <div className="ic-1 mb-4 sm:mb-0 flex flex-col items-center">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="44"
@@ -106,14 +93,13 @@ const Component2 = ({ selectedSearch, onData }) => {
                 />
               </svg>
               {pollution.map((pol) => (
-                <p key={pol.id} className="ic-txt">
+                <p key={pol.id} className="ic-txt text-sm sm:text-base">
                   {pol.PM25}
                   <span className="ic-span">(PM2.5)</span>
-                  {/* {checkPM25Threshold(pol.PM25)} */}
                 </p>
               ))}
             </div>
-            <div className="ic-1">
+            <div className="ic-1 mb-4 sm:mb-0 flex flex-col items-center">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="44"
@@ -131,14 +117,13 @@ const Component2 = ({ selectedSearch, onData }) => {
                 />
               </svg>
               {pollution.map((pol) => (
-                <p key={pol.id} className="ic-txt">
+                <p key={pol.id} className="ic-txt text-sm sm:text-base">
                   {pol.PM10}
                   <span className="ic-span">(PM10)</span>
-                  {/* {checkPM10Threshold(pol.PM10)} */}
                 </p>
               ))}
             </div>
-            <div className="ic-1">
+            <div className="ic-1 flex flex-col items-center">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="44"
@@ -156,16 +141,15 @@ const Component2 = ({ selectedSearch, onData }) => {
                 />
               </svg>
               {pollution.map((pol) => (
-                <p key={pol.id} className="ic-txt">
+                <p key={pol.id} className="ic-txt text-sm sm:text-base">
                   {pol.SO2}
                   <span className="ic-span">(SO2)</span>
-                  {/* {checkSO2Threshold(pol.SO2)} */}
                 </p>
               ))}
             </div>
           </div>
-          <div className="poll-row-2 flex flex-row justify-evenly">
-            <div className="ic-1">
+          <div className="poll-row-2 flex flex-col sm:flex-row justify-evenly">
+            <div className="ic-1 mb-4 sm:mb-0 flex flex-col items-center">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="44"
@@ -183,14 +167,13 @@ const Component2 = ({ selectedSearch, onData }) => {
                 />
               </svg>
               {pollution.map((pol) => (
-                <p key={pol.id} className="ic-txt">
+                <p key={pol.id} className="ic-txt text-sm sm:text-base">
                   {pol.CO}
                   <span className="ic-span">(CO)</span>
-                  {/* {checkCOThreshold(pol.CO)} */}
                 </p>
               ))}
             </div>
-            <div className="ic-1">
+            <div className="ic-1 mb-4 sm:mb-0 flex flex-col items-center">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="44"
@@ -208,14 +191,13 @@ const Component2 = ({ selectedSearch, onData }) => {
                 />
               </svg>
               {pollution.map((pol) => (
-                <p key={pol.id} className="ic-txt">
+                <p key={pol.id} className="ic-txt text-sm sm:text-base">
                   {pol.OZONE}
                   <span className="ic-span">(OZONE)</span>
-                  {/* {checkOzoneThreshold(pol.OZONE)} */}
                 </p>
               ))}
             </div>
-            <div className="ic-1">
+            <div className="ic-1 flex flex-col items-center">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="44"
@@ -233,10 +215,9 @@ const Component2 = ({ selectedSearch, onData }) => {
                 />
               </svg>
               {pollution.map((pol) => (
-                <p key={pol.id} className="ic-txt">
+                <p key={pol.id} className="ic-txt text-sm sm:text-base">
                   {pol.NO2}
                   <span className="ic-span">(NO2)</span>
-                  {/* {checkNO2Threshold(pol.NO2)} */}
                 </p>
               ))}
             </div>

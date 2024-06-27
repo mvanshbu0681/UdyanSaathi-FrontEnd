@@ -1,37 +1,34 @@
 import React, { useState, useEffect } from "react";
 import { getBaseUrl, getStationName } from "../Connectivity/storageHelper";
 
-
 const Component8 = (selectedSearch) => {
   const [apiData, setApiData] = useState([]);
   const [selectedYear, setSelectedYear] = useState("2024");
-
 
   useEffect(() => {
     getAqiCalData();
   }, [selectedSearch]);
 
-
-    const getAqiCalData = async () => {
-      const selectstation = getStationName();
-      try {
-        const baseurl = getBaseUrl();
-        console.log(baseurl);
-        const response = await fetch(`${baseurl}get-AqiCalData/?pol_Station=${selectstation}`);
-        const data = await response.json();
-        setApiData(data);
-        console.log("Response:", response);
-        console.log("Data:", data);
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      }
-    };
+  const getAqiCalData = async () => {
+    const selectstation = getStationName();
+    try {
+      const baseurl = getBaseUrl();
+      console.log(baseurl);
+      const response = await fetch(`${baseurl}get-AqiCalData/?pol_Station=${selectstation}`);
+      const data = await response.json();
+      setApiData(data);
+      console.log("Response:", response);
+      console.log("Data:", data);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  };
 
   const handleYearChange = (e) => {
     setSelectedYear(e.target.value);
   };
 
-  const filteredData = apiData.filter(entry => 
+  const filteredData = apiData.filter((entry) =>
     selectedYear ? entry.Pol_Date?.startsWith(selectedYear) : false
   );
 
@@ -64,11 +61,11 @@ const Component8 = (selectedSearch) => {
 
   return (
     <div className="cal-container m-8">
-      <div className="cal-txt flex flex-row items-center justify-between">
-        <h1 className="text-2xl text-black font-bold text-start mb-2 align-middle">
+      <div className="cal-txt flex flex-col md:flex-row items-center justify-between">
+        <h1 className="text-2xl text-black font-bold text-start mb-2 md:mb-0">
           AQI Calendar
         </h1>
-        <div className="markings flex flex-row">
+        <div className="markings flex flex-row mt-4 md:mt-0">
           <div className="w-24 h-7 bg-[#34a12b] flex justify-center items-center">
             <span className="text-white text-sm">0 - 50</span>
           </div>
@@ -89,10 +86,9 @@ const Component8 = (selectedSearch) => {
           </div>
         </div>
       </div>
-      <div className="flex flex-row gap-2">
+      <div className="flex flex-col md:flex-row gap-2 mt-4">
         <label className="text-lg font-semibold">Select Year: </label>
         <select value={selectedYear} onChange={handleYearChange} className="border p-2">
-          {/* <option value="" disabled>Select Year</option> */}
           {uniqueYears.map((year, index) => (
             <option key={index} value={year}>
               {year}
@@ -101,7 +97,7 @@ const Component8 = (selectedSearch) => {
         </select>
       </div>
       {selectedYear && (
-        <div className="cal mt-5 flex flex-row gap-2">
+        <div className="cal mt-5 grid grid-cols-3 md:grid-cols-4 gap-2">
           {Object.entries(monthsData)
             .sort((a, b) => a[0] - b[0])
             .map(([month, dates], index) => (

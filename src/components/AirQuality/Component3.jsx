@@ -10,10 +10,7 @@ const Component3 = () => {
   const AqiOptions = ["CO", "NH3", "NO2", "OZONE", "PM25", "PM10", "SO2", "AQI"];
 
   useEffect(() => {
-    // Calculate the from_date and to_date based on the selected time interval
     const { from_date, to_date } = getDateRange(selectedOption);
-    
-    // Fetch air quality data using the parameterized URL
     fetchAirQualityData(from_date, to_date);
   }, [selectedOption, selectedParameter]);
 
@@ -33,7 +30,7 @@ const Component3 = () => {
     } else if (interval === "last-month") {
       from_date.setDate(today.getDate() - 30);
     }
-   
+
     const to_date = today.toISOString().slice(0, 10);
     return { from_date: from_date.toISOString().slice(0, 10), to_date };
   };
@@ -59,10 +56,10 @@ const Component3 = () => {
 
   return (
     <>
-      <div className="C3-container flex flex-col gap-3 m-8 rounded-2xl">
+      <div className="C3-container flex flex-col gap-3 m-4 sm:m-8 rounded-2xl">
         <div className="C3-txt">
-          <div className="C3-heading flex flex-row items-center gap-2">
-            <h3 className="text-xl text-[#33a0d3]">
+          <div className="C3-heading flex flex-col sm:flex-row items-start sm:items-center gap-2">
+            <h3 className="text-lg sm:text-xl text-[#33a0d3]">
               Most polluted cities in India
             </h3>
             <span>
@@ -94,7 +91,7 @@ const Component3 = () => {
           <p className="text-sm text-slate-500 my-3 mb-4">
             Real Time worst city rankings
           </p>
-          <div className="select flex flex-row gap-4">
+          <div className="select flex flex-col sm:flex-row gap-4">
             <select
               className="border border-gray-300 p-2 rounded-md mt-3"
               onChange={(e) => setSelectedOption(e.target.value)}
@@ -119,7 +116,7 @@ const Component3 = () => {
             </select>
           </div>
         </div>
-        <div className="C3-table">
+        <div className="C3-table overflow-x-auto">
           {error ? (
             <p className="text-red-500">{error}</p>
           ) : (

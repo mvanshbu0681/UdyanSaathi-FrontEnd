@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { getBaseUrl } from "../Connectivity/storageHelper";
 
-const Component4 = (selectedSearch) => {
+const Component4 = ({ selectedSearch }) => {
   const [aqiData, setAqiData] = useState(null);
 
   useEffect(() => {
@@ -9,32 +9,32 @@ const Component4 = (selectedSearch) => {
   }, [selectedSearch]);
 
   const getPollutionData = async () => {
-      try {
-        const selectstation = getStationName();
-        const baseurl = getBaseUrl();
-        const response = await fetch(
-          `${baseurl}get-MLData/?pol_Station=${selectstation}`
-        );
+    try {
+      const selectstation = getStationName();
+      const baseurl = getBaseUrl();
+      const response = await fetch(
+        `${baseurl}get-MLData/?pol_Station=${selectstation}`
+      );
 
-        if (!response.ok) {
-          throw new Error("Failed to fetch data");
-        }
-
-        const data = await response.json();
-        console.log(data);
-        setAqiData(data);
-      } catch (error) {
-        console.error("Error fetching data:", error.message);
+      if (!response.ok) {
+        throw new Error("Failed to fetch data");
       }
-    };
+
+      const data = await response.json();
+      console.log(data);
+      setAqiData(data);
+    } catch (error) {
+      console.error("Error fetching data:", error.message);
+    }
+  };
 
   return (
     <>
-      <div className="C4-container m-8">
+      <div className="C4-container m-4 sm:m-8">
         <div className="C4-top">
           <div className="C4-txt">
-            <div className="C4-heading flex flex-row items-center gap-2">
-              <h1 className="text-xl text-[#33a0d3]">Health Advice</h1>
+            <div className="C4-heading flex flex-col sm:flex-row items-start sm:items-center gap-2">
+              <h1 className="text-lg sm:text-xl text-[#33a0d3]">Health Advice</h1>
               <span>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -43,7 +43,7 @@ const Component4 = (selectedSearch) => {
                   viewBox="0 0 128 128"
                   fill="none"
                 >
-                  <g clip-path="url(#clip0_710_2)">
+                  <g clipPath="url(#clip0_710_2)">
                     <path
                       d="M68.9702 31.6601C68.3302 31.1701 67.5902 30.8101 66.7302 30.6101C65.8802 30.4201 64.9802 30.3101 64.0102 30.3101C63.0402 30.3101 62.1302 30.4101 61.2702 30.6101C60.4002 30.8001 59.6602 31.1601 59.0102 31.6601C58.3702 32.1501 57.8702 32.8001 57.5002 33.6101C57.1402 34.4201 56.9502 35.4401 56.9502 36.6501C56.9502 37.8401 57.1402 38.8401 57.5002 39.6701C57.8702 40.4801 58.3702 41.1501 59.0102 41.6401C59.6502 42.1301 60.4002 42.4901 61.2702 42.7001C62.1302 42.9101 63.0402 43.0201 64.0102 43.0201C64.9702 43.0201 65.8802 42.9101 66.7302 42.7001C67.5902 42.4901 68.3302 42.1301 68.9702 41.6401C69.6102 41.1501 70.1202 40.4801 70.5002 39.6701C70.8802 38.8401 71.0702 37.8401 71.0702 36.6501C71.0702 35.4301 70.8802 34.4101 70.5002 33.6101C70.1202 32.8001 69.6102 32.1501 68.9702 31.6601ZM57.5202 48.9401H70.4902V96.4501H57.5202V48.9401Z"
                       fill="#40C0E7"
@@ -65,29 +65,29 @@ const Component4 = (selectedSearch) => {
               How to protect yourself from air pollution in India
             </span>
           </div>
-          <div className="precautions flex flex-row justify-evenly mt-8">
-            <div className="p mask flex flex-col">
-              <img src="/precautions/wear-mask-icon.webp" alt="" />
+          <div className="precautions flex flex-col sm:flex-row justify-evenly mt-8">
+            <div className="p mask flex flex-col items-center">
+              <img src="/precautions/wear-mask-icon.webp" alt="Wear mask icon" />
               <span className="p-h text-lg font-semibold">Wear mask</span>
               <span className="p-s">Required</span>
             </div>
-            <div className="p stay-indoors flex flex-col">
-              <img src="/precautions/Stay-Indoors-icon.webp" alt="" />
+            <div className="p stay-indoors flex flex-col items-center">
+              <img src="/precautions/Stay-Indoors-icon.webp" alt="Stay indoors icon" />
               <span className=" p-h text-lg font-semibold">Stay Indoor</span>
               <span className="p-s">Required</span>
             </div>
-            <div className="p windows flex flex-col">
-              <img src="/precautions/Shut-Openings-icon-cross.webp" alt="" />
+            <div className="p windows flex flex-col items-center">
+              <img src="/precautions/Shut-Openings-icon-cross.webp" alt="Shut openings icon" />
               <span className=" p-h text-lg font-semibold">Windows</span>
               <span className="p-s">Keep Close</span>
             </div>
-            <div className="p use-purifier flex flex-col">
-              <img src="/precautions/Use-a-purifier-icon.webp" alt="" />
+            <div className="p use-purifier flex flex-col items-center">
+              <img src="/precautions/Use-a-purifier-icon.webp" alt="Use purifier icon" />
               <span className=" p-h text-lg font-semibold">Use Purifier</span>
               <span className="p-s">Required</span>
             </div>
-            <div className="p family flex flex-col">
-              <img src="/precautions/family-icon-cross.webp" alt="" />
+            <div className="p family flex flex-col items-center">
+              <img src="/precautions/family-icon-cross.webp" alt="Family icon" />
               <span className=" p-h text-lg font-semibold">Family</span>
               <span className="p-s">Allow Outdoor</span>
             </div>
@@ -95,72 +95,23 @@ const Component4 = (selectedSearch) => {
         </div>
         
         <div className="C4-bottom">
-          <div className=" bg-[#33a0d3] text-white mt-20 h-9 flex justify-center items-center rounded-2xl">
+          <div className="bg-[#33a0d3] text-white mt-10 sm:mt-20 h-9 flex justify-center items-center rounded-2xl">
             <p>Air Quality Forecast</p>
           </div>
-          <div className="flex flex-row justify-evenly items-center">
-          <div className="part-2 flex-col mt-3 justify-evenly">
+          <div className="flex flex-col sm:flex-row justify-evenly items-center mt-5 sm:mt-10">
             {aqiData &&
-              aqiData.map((day, index) => (
-                <div key={index} className="component flex flex-col justify-center items-center gap-3">
-                  <span>{`Day ${index + 1}`}</span>
-                  <div className="green bg-[#ecffeb] flex flex-col rounded-xl px-8 py-3 items-center justify-center gap-2">
-                    <h1 className="text-xl text-[#5e5e5e] font-bold">{day[`Day${index + 1}`]}</h1>
-                    <span className="text-sm text-slate-500 ">AQI</span>
+              aqiData.slice(0, 5).map((day, index) => (
+                <div key={index} className="part-2 flex-col mt-3 sm:mt-0 justify-evenly">
+                  <div className="component flex flex-col justify-center items-center gap-3">
+                    <span>{`Day ${index + 1}`}</span>
+                    <div className="green bg-[#ecffeb] flex flex-col rounded-xl px-8 py-3 items-center justify-center gap-2">
+                      <h1 className="text-xl text-[#5e5e5e] font-bold">{day[`Day${index + 1}`]}</h1>
+                      <span className="text-sm text-slate-500">AQI</span>
+                    </div>
                   </div>
                 </div>
               ))}
           </div>
-          <div className="part-2 flex-col mt-3 justify-evenly3">
-          {aqiData &&
-              aqiData.map((day, index) => (
-                <div key={index} className="component flex flex-col justify-center items-center gap-3">
-                  <span>{`Day ${index + 2}`}</span>
-                  <div className="green bg-[#ecffeb] flex flex-col rounded-xl px-8 py-3 items-center justify-center gap-2">
-                    <h1 className="text-xl text-[#5e5e5e] font-bold">{day[`Day${index + 2}`]}</h1>
-                    <span className="text-sm text-slate-500 ">AQI</span>
-                  </div>
-                </div>
-              ))}
-            </div>
-            <div className="part-2 flex-col mt-3 justify-evenly">
-            {aqiData &&
-              aqiData.map((day, index) => (
-                <div key={index} className="component flex flex-col justify-center items-center gap-3">
-                  <span>{`Day ${index + 3}`}</span>
-                  <div className="green bg-[#ecffeb] flex flex-col rounded-xl px-8 py-3 items-center justify-center gap-2">
-                    <h1 className="text-xl text-[#5e5e5e] font-bold">{day[`Day${index + 3}`]}</h1>
-                    <span className="text-sm text-slate-500 ">AQI</span>
-                  </div>
-                </div>
-              ))}
-            </div>
-            <div className="part-2 flex-col mt-3 justify-evenly">
-            {aqiData &&
-              aqiData.map((day, index) => (
-                <div key={index} className="component flex flex-col justify-center items-center gap-3">
-                  <span>{`Day ${index + 4}`}</span>
-                  <div className="green bg-[#ecffeb] flex flex-col rounded-xl px-8 py-3 items-center justify-center gap-2">
-                    <h1 className="text-xl text-[#5e5e5e] font-bold">{day[`Day${index + 4}`]}</h1>
-                    <span className="text-sm text-slate-500 ">AQI</span>
-                  </div>
-                </div>
-              ))}
-            </div>
-            <div className="part-2 flex-col mt-3 justify-evenly">
-            {aqiData &&
-              aqiData.map((day, index) => (
-                <div key={index} className="component flex flex-col justify-center items-center gap-3">
-                  <span>{`Day ${index + 5}`}</span>
-                  <div className="green bg-[#ecffeb] flex flex-col rounded-xl px-8 py-3 items-center justify-center gap-2">
-                    <h1 className="text-xl text-[#5e5e5e] font-bold">{day[`Day${index + 5}`]}</h1>
-                    <span className="text-sm text-slate-500 ">AQI</span>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-            
         </div>
       </div>
     </>

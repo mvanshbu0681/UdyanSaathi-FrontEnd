@@ -1,11 +1,7 @@
-// eslint-disable-next-line no-unused-vars
 import React, { useState, useEffect } from 'react';
-
-
 import { getUrl } from '../Connectivity/storageHelper';
-// import AnimatedBackground from '../animations/AnimatedBackground';
 
-const Component1 = ({selectedSearch}) => {
+const Component1 = ({ selectedSearch }) => {
   const [state, setState] = useState({
     value: 60, // Default initial value
     color: 'transparent',
@@ -70,61 +66,63 @@ const Component1 = ({selectedSearch}) => {
       month: 'short',
       day: 'numeric',
       hour: 'numeric',
-      minute: '2-digit', // Use two digits for minute
-      hour12: true, // Use 12-hour clock
+      minute: '2-digit',
+      hour12: true,
       timeZone: 'UTC',
     };
-  
+
     const formattedDate = new Date(dateString).toLocaleString('en-US', options);
-    
+
     return formattedDate;
   };
-  
-  
+
   return (
     <>
       <div className="relative rounded-2xl h-full">
-        <div className="absolute inset-0 rounded-2xl">
-          {/* <AnimatedBackground /> */}
-        </div>
-        <div className=" p-12 rounded-2xl relative z-10 flex flex-col gap-9">
-          <div className="C1-txt-1 mb-11">
-          {pollution.map((pol) =>(
-              <h1 key={pol.id} className="text-4xl mb-3">{pol.Station}</h1>
-              ))}
-            {pollution.map((pol) =>(
-            <p key={pol.id} className="text-slate-500 text-xm">
-                  Real-time PM2.5, PM10 air pollution level {pol.State}
-                </p>
+        <div className="absolute inset-0 rounded-2xl"></div>
+        <div className="p-6 sm:p-12 rounded-2xl relative z-10 flex flex-col gap-9">
+          <div className="C1-txt-1 mb-6 sm:mb-11">
+            {pollution.map((pol) => (
+              <h1 key={pol.id} className="text-2xl sm:text-4xl mb-2 sm:mb-3">{pol.Station}</h1>
+            ))}
+            {pollution.map((pol) => (
+              <p key={pol.id} className="text-slate-500 text-xs sm:text-sm">
+                Real-time PM2.5, PM10 air pollution level {pol.State}
+              </p>
             ))}
           </div>
-          <div className="C1-txt-2 flex flex-row">
-            <div className="C1-p1 flex flex-col justify-center gap-1">
-            {pollution.map((pol) =>(
-                  <p key={pol.id} className="text-slate-500 text-xm">
-                    Last Update: {(pol.Pol_Date)}
-                  </p>
-                 ))}
-
-                  {pollution.map((pol) =>(
-                  <button key={pol.id} 
+          <div className="C1-txt-2 flex flex-col sm:flex-row">
+            <div className="C1-p1 flex flex-col justify-center gap-1 mb-4 sm:mb-0">
+              {pollution.map((pol) => (
+                <p key={pol.id} className="text-slate-500 text-xs sm:text-sm">
+                  Last Update: {(pol.Pol_Date)}
+                </p>
+              ))}
+              {pollution.map((pol) => (
+                <button
+                  key={pol.id}
                   style={{
-                    background : state.color
+                    background: state.color,
                   }}
-                  className={`Warning  p-1 rounded-3xl px-3 mt-2 text-white mr-14`}>
-                    {pol.AQI_Quality}
-                  </button>
-                  ))}
+                  className={`Warning p-1 rounded-3xl px-3 mt-2 text-white mr-14`}
+                >
+                  {pol.AQI_Quality}
+                </button>
+              ))}
             </div>
             <div className="C1-p2 mx-auto flex flex-col items-center">
-            {pollution.map((pol) =>(
-              <h1 key={pol.id}
-              style={{
-                color : state.color
-              }}
-               className={`ml-52 text-8xl font-bold`}>{pol.AQI}</h1>
-               ))}
-              <p className="ml-52 text-slate-600">(AQI)</p>
+              {pollution.map((pol) => (
+                <h1
+                  key={pol.id}
+                  style={{
+                    color: state.color,
+                  }}
+                  className={`text-6xl sm:text-8xl font-bold`}
+                >
+                  {pol.AQI}
+                </h1>
+              ))}
+              <p className="text-slate-600">(AQI)</p>
             </div>
           </div>
         </div>
